@@ -1,37 +1,43 @@
 class Pokemon{
-    constructor(name,img,health,abilities){
+    constructor(name,img,hp,attack,defense,speed){
         this.name = name;
         this.img = img;
-        this.health = health;
-        this.abilities = abilities
+        this.hp = hp;
+        this.attack = attack;
+        this.defense = defense;
+        this.speed = speed;
     }
 }
 
-for(let i = 1; i < 151; i++){
+let G1pokemon = []
 
-}
-
-let checkEnter = document.getElementById("pokeId")
-checkEnter.addEventListener("keypress", function(event) {
-    if (event.key === "Enter") {
-        getPokemon()
+for(let i = 1; i <= 151; i++){
+    if(i == 150){
+        i = 151
     }
-});
+    generatePokemon(i)
+}
+console.log('ok')
 
-async function getPokemon() {
-    let pokeId = document.getElementById('pokeId').value
-    let url = "https://pokeapi.co/api/v2/pokemon/" + pokeId.toString();
-    console.log(url);
-
+async function getPokemonFromApi(id) {
+    let url = "https://pokeapi.co/api/v2/pokemon/" + id.toString();
     let res = await fetch(url);
     let pokemon = await res.json();
-
-    console.log(pokemon);
-    console.log(pokemon['name']);
-    document.getElementById('pokemon').src = pokemon['sprites']['front_default']
     return pokemon
 }
 
 function generatePokemon(id){
-    getPokemon(id)
+    getPokemonFromApi(id).then(pokemon => {
+        let result = new Pokemon(pokemon.forms[0].name
+        ,pokemon.sprites.front_default
+        ,pokemon.stats[0].base_stat
+        ,pokemon.stats[1].base_stat
+        ,pokemon.stats[2].base_stat
+        ,pokemon.stats[5].base_stat)
+        G1pokemon.push(result)
+    })
+}
+
+function returnPokelist(){
+    console.log(G1pokemon);
 }
