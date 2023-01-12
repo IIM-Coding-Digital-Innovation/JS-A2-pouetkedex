@@ -7,9 +7,64 @@
     <title>Document</title>
 </head>
 <body>
-    <input type="number" placeholder="pokemon" id="pokeId">
-    <button onclick="returnPokelist()">log all pokemon</button><br>
-    <img id="pokemon">
+    <div id="generateMewtwo" style="background-color: brown; width: 200px; height: 350px;">
+        <div id="generateMewtwoImage" style="background-color: rgb(125, 64, 64); width: 200px; height: 200px;background-repeat:no-repeat;background-size: contain;"></div>
+        <ul id="generateMewtwoStats"> 
+            <li style="color: white;" id="mewtwoName">name :</li>
+            <li style="color: white;" id="mewtwoHp">hp :</li>
+            <li style="color: white;" id="mewtwoAttack">attack :</li>
+            <li style="color: white;" id="mewtwoDefense">defense :</li>
+            <li style="color: white;" id="mewtwoSpeed">speed :</li>
+        </ul>
+        <button id="generateMewtwoButton" onclick="generateMewtwo()">Generate Mewtwo</button>
+    </div>
+
+    <div id="combatMod">
+        <div>
+            <div></div>
+            <ul>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+        <div>
+            <div></div>
+            <ul>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="evolutionMod">
+        <div>
+            <div></div>
+            <ul>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+        <div>
+            <div></div>
+            <ul>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+    </div>
+
 </body>
 <script src="script.js"></script>
 </html>
