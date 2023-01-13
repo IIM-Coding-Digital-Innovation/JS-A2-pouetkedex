@@ -41,5 +41,6 @@ Whos.addEventListener("keydown", function(){
     if (Whos.value == pouet[0]) {
         whos_answer.innerHTML += `<h2>🎉It's ${pouet} !👏</h2>`
         ImgRandomPokemon.style.filter = 'brightness(100%)'
+        Whos.value = ''
     }
 })
