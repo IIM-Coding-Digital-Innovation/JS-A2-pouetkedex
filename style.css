@@ -1,0 +1,10 @@
+#evolutionZone{
+  display: flex;
+  flex-direction: row;
+}
+
+body {
+  /* background-image: url('img/fond.png'); */
+  background-size: 100% 100vh;
+  background-repeat: no-repeat;
+}

@@ -5,10 +5,43 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <input type="text" placeholder="pokemon" id="pokeId"><br>
     <img id="pokemon">
+
+    <button id="addtoken" onclick="addtoken()">add token</button>
+    <p id="evolutionTokens">0</p>
+
+    <div id="evolutionMod">
+        <div id="evolutionZone">
+            <div style="background-color: brown; width: 200px; height: 350px;">
+                <div></div>
+                <ul>
+                    <li id="mewtwoname"></li>
+                    <li id="mewtwohp"></li>
+                    <li id="mewtwoattack"></li>
+                    <li id="mewtwodefense"></li>
+                    <li id="mewtwospeed"></li>
+                </ul>
+            </div>
+            <div style="background-color: brown; width: 200px; height: 350px;">
+                <div></div>
+                <ul>
+                    <li id="enemyname"></li>
+                    <li id="enemyhp"></li>
+                    <li id="enemyattack"></li>
+                    <li id="enemydefense"></li>
+                    <li id="enemyspeed"></li>
+                </ul>
+            </div>
+        </div>
+        <button id="switchEvolutionButton" onclick="switchToEvolution()">Switch to Evolution</button>
+        <input type="number" placeholder="tokens" id="tokenNumber">
+        <button id="evolutionButton" onclick="startEvolution()">Start Evolution</button>
+    </div>
+
 </body>
 <script src="script.js"></script>
 </html>
