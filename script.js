@@ -138,6 +138,9 @@ function fight() {
                     if (combat[0].speed >= combat[1].speed && turn_start === 0) {
                         turn = 0
                         turn_start = 1
+                    } else {
+                        turn = 1
+                        turn_start = 1
                     }
 
                     if (turn === 0) {
