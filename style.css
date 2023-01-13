@@ -1,0 +1,23 @@
+#global, #combatZone, #evolutionZone{
+    margin: 0 0 0 5px;
+    display: flex;
+    flex-direction: row;
+}
+#evolution_mewto, #combat_mewto{
+    box-sizing: border-box;
+    border-right: 1px black solid;
+}
+[id$="_img"]{
+    box-sizing: border-box;
+    border: 5px darkred solid;
+}
+body{
+    color: white;
+    background-color: rgb(30, 30, 30);
+}
+.overlay {
+    /* -webkit-filter : brightness(0%);
+    filter : brightness(0%); */
+    background: rgba(0,0,0,0.1);
+    pointer-events: none;
+}
