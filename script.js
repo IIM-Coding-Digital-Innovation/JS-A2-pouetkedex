@@ -38,6 +38,7 @@ for(let i = 1; i <= 151; i++){
     generatePokemon(i)
 }
 console.log(G1pokemon)
+
 async function getPokemonFromApi(id) {
     let url = "https://pokeapi.co/api/v2/pokemon/" + id.toString();
     let res = await fetch(url);
@@ -58,8 +59,8 @@ function generatePokemon(id){
 }
 
 function generateMewtwo(){
-    let min = 80
-    let max = 120
+    let min = 40
+    let max = 70
     mewtwo = new Pokemon('Mewtwo-'+mewtwoCounter,
     randomBetween(min,max),
     randomBetween(min,max),
@@ -122,6 +123,7 @@ function clearZones(name){
     }
 }
 function switchToEvolution(){
+    combatStarted = 0
     modeSelected = 'evolution'
     clearZones('generate')
     clearZones('combat')
@@ -254,8 +256,14 @@ function delay(milliseconds){
 function escapeCombat(){
     if(combatStarted == 1){
         enemy = G1pokemon[randomBetween(0,149)]
+        for(const key in enemy){
+            if(key == 'img'){
+                document.getElementById('combat_enemy_img').style.backgroundImage = "url("+enemy.img+")"
+            }else{
+                document.getElementById(modeSelected+'_enemy_' + key).innerHTML = ''
+            }
+        }
         difficultyPercentage = difficultyScaling(mewtwo.attack)
-        document.getElementById('combat_enemy_img').style.backgroundImage = "url("+enemy.img+")"
     }
 }
 
@@ -273,14 +281,7 @@ function switchToCombat(){
             document.getElementById(modeSelected+'_mewtwo_' + key).innerHTML = `${key} : `+mewtwo[key]
         }
     }
-    // document.getElementById(modeSelected+'_enemy_img').style.backgroundImage = "url("+enemy.img+")"
-    for(const key in enemy){
-        if(key == 'img'){
-            document.getElementById(modeSelected+'_enemy_' + key).style.backgroundImage = "url("+enemy[key]+")"
-        }else{
-            document.getElementById(modeSelected+'_enemy_' + key).innerHTML = `${key} : `+enemy[key]
-        }
-    }
+    document.getElementById(modeSelected+'_enemy_img').style.backgroundImage = "url("+enemy.img+")"
 }
 
 async function startCombat(){
@@ -292,7 +293,7 @@ async function startCombat(){
             document.getElementById(modeSelected+'_enemy_' + key).innerHTML = `${key} : `+enemy[key]
         }
     }
-    
+
     while(mewtwo.hp >= 0 && enemy.hp >= 0){
         if(mewtwo.speed <= enemy.speed){
             if(mewtwo.defense - enemy.attack < 0){
@@ -311,7 +312,7 @@ async function startCombat(){
                 }
                 if(enemy.hp <= 0){
                     enemy.hp = 0
-                    continue
+                    break
                 }
             }
         }else{
@@ -322,7 +323,7 @@ async function startCombat(){
             }
             if(enemy.hp <= 0){
                 enemy.hp = 0
-                continue
+                break
             }else{
                 if(mewtwo.defense - enemy.attack < 0){
                     mewtwo.hp -= Math.abs(mewtwo.defense - enemy.attack)
@@ -336,8 +337,8 @@ async function startCombat(){
             }
         }
     }
-    combatStarted = 0
-    if(mewtwo.hp == 0){
+    combatStarted = 1
+    if(mewtwo.hp <= 0){
         for(const key in mewtwo){
             if(key == 'img'){
                 document.getElementById(modeSelected+'_mewtwo_' + key).style.backgroundImage = "url("+mewtwo[key]+")"
@@ -371,5 +372,7 @@ async function startCombat(){
         }
         await delay(1000)
         escapeCombat()
+        evolutionToken++
+        document.getElementById('evolutionTokens').innerHTML = evolutionToken
     }
 }
