@@ -1,0 +1,64 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+.combat {
+    height: 100vh;
+    background-color: aquamarine;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+}
+
+.combat > div:nth-child(1),
+.combat > div:nth-child(4) {
+    background-color: cornflowerblue;
+}
+
+.combat > div:nth-child(2),
+.combat > div:nth-child(3){
+    background-color: burlywood;
+}
+
+.input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+
+button {
+    padding: 1rem 2rem;
+    border-radius: 1rem;
+    border: none;
+    font-size: 1.5rem;
+}
+
+.hidden {
+    display: none;
+}
+
+.mew,
+.enemy{
+    display: flex;
+    gap: 2rem;
+    font-size: 1.5rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.overlay {
+    -webkit-filter : brightness(0%);
+    filter : brightness(0%);
+}
+
+.enemy img {
+    height: 30%;
+}
+
+
+
+
