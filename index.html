@@ -8,78 +8,71 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <button id="generateMewtwoButton" onclick="generateMewtwo()">Generate Mewtwo</button>
-    <button id="addtoken" onclick="addtoken()">add token</button>
-    <p id="evolutionTokens">0</p>
-
-    <div id="global">
-        <div id="generateMewtwo" style="background-color: darkred; width: 200px; height: 350px;">
-            <div id="generate_mewtwo_img" style="background-color: rgb(125, 64, 64); width: 200px; height: 200px;background-repeat:no-repeat;background-size: contain;"></div>
-            <ul id="generateMewtwoStats"> 
-                <li id="generate_mewtwo_name"></li>
-                <li id="generate_mewtwo_hp"></li>
-                <li id="generate_mewtwo_attack"></li>
-                <li id="generate_mewtwo_defense"></li>
-                <li id="generate_mewtwo_speed"></li>
-            </ul>
-        </div>
-
-        <div id="combatMod">
-            <div id="combatZone">
-                <div id="combat_mewto" style="background-color: darkred; width: 200px; height: 350px;">
-                    <div id="combat_mewtwo_img" style="background-color: rgb(125, 64, 64); width: 200px; height: 200px;background-repeat:no-repeat;background-size: contain;"></div>
-                    <ul>
-                        <li id="combat_mewtwo_name"></li>
-                        <li id="combat_mewtwo_hp"></li>
-                        <li id="combat_mewtwo_attack"></li>
-                        <li id="combat_mewtwo_defense"></li>
-                        <li id="combat_mewtwo_speed"></li>
-                    </ul>
-                </div>
-                <div id="combat_enemy" style="background-color: darkred; width: 200px; height: 350px;">
-                    <div id="combat_enemy_img" style="background-color: rgb(125, 64, 64); width: 200px; height: 200px;background-repeat:no-repeat;background-size: contain;"></div>
-                    <ul>
-                        <li id="combat_enemy_name"></li>
-                        <li id="combat_enemy_hp"></li>
-                        <li id="combat_enemy_attack"></li>
-                        <li id="combat_enemy_defense"></li>
-                        <li id="combat_enemy_speed"></li>
-                    </ul>
-                </div>
+    <div id="lab">
+        <div id="generateMewtwo">
+            <div id="generate_outer_button">
+                <img alt="" id="generate_mewtwo_img" height="200px">
+                <div id="generate_mewtwo_stats"></div>
             </div>
-            <button id="switchCombatButton" onclick="switchToCombat()">Switch to Combat</button>
-            <button id="combatEscapeButton" onclick="escapeCombat()">Escape Combat</button>
-            <button id="combatButton" onclick="startCombat()">Start Combat</button>
+            <button id="generateMewtwoButton" onclick="generateMewtwo()">Generate Mewtwo</button>
         </div>
 
         <div id="evolutionMod">
             <div id="evolutionZone">
-                <div id="evolution_mewto" style="background-color: darkred; width: 200px; height: 350px;">
-                    <div id="evolution_mewtwo_img" style="background-color: rgb(125, 64, 64); width: 200px; height: 200px;background-repeat:no-repeat;background-size: contain;"></div>
-                    <ul>
-                        <li id="evolution_mewtwo_name"></li>
-                        <li id="evolution_mewtwo_hp"></li>
-                        <li id="evolution_mewtwo_attack"></li>
-                        <li id="evolution_mewtwo_defense"></li>
-                        <li id="evolution_mewtwo_speed"></li>
-                    </ul>
+                <div id="evolution_mewto">
+                    <img src="" alt="" id="evolution_mewtwo_img" height="200px">
+                    <div id="evolution_mewtwo_stats"></div>
                 </div>
-                <div id="evolution_enemy" style="background-color: darkred; width: 200px; height: 350px;">
-                    <div id="evolution_enemy_img" style="background-color: rgb(125, 64, 64); width: 200px; height: 200px;background-repeat:no-repeat;background-size: contain;"></div>
-                    <ul>
-                        <li id="evolution_enemy_name"></li>
-                        <li id="evolution_enemy_hp"></li>
-                        <li id="evolution_enemy_attack"></li>
-                        <li id="evolution_enemy_defense"></li>
-                        <li id="evolution_enemy_speed"></li>
-                    </ul>
+                <div id="evolution_enemy">
+                    <img src="" alt="" id="evolution_enemy_img" height="200px">
+                    <div id="evolution_enemy_stats"></div>
                 </div>
             </div>
-            <button id="switchEvolutionButton" onclick="switchToEvolution()">Switch to Evolution</button>
-            <input type="number" placeholder="tokens" id="tokenNumber">
-            <button id="evolutionButton" onclick="startEvolution()">Start Evolution</button>
+            <div id="modeButtons">
+                <div>
+                    <button id="switchEvolutionButton" onclick="switchToEvolution()">Switch to Evolution</button>
+                    <button id="evolutionButton" onclick="startEvolution()">Start Evolution</button>
+                    <input type="number" placeholder="tokens" id="tokenNumber">
+                    <p id="evolutionTokens" style="font-size: 25px;"></p>
+                </div>
+                <div>
+                    <button id="switchCombatButton" onclick="switchToCombat()">Switch to Combat</button>
+                    <button id="combatEscapeButton" onclick="escapeCombat()">Escape Combat</button>
+                    <button id="combatButton" onclick="startCombat()">Start Combat</button>
+                </div>
+            </div>
         </div>
 
+        <div id="pokedex">
+            <div id="pokedex_outer_button">
+                <div class="div">
+                    <div class="img-view"></div>
+                    <div class="afficher"></div>
+                </div>
+            </div>
+            <input type="text" id="pokedexInput">
+            <button onclick="switchPokedexMode('pokedex')">Pokedex Mode</button>
+            <button onclick="switchPokedexMode('guess')">Guess Mode</button>
+        </div>
+    </div>
+    
+    <div id="duel">
+        <div id="combatZone">
+            <div id="combat_mewto">
+                <img src="" alt="" id="combat_mewtwo_img" height="400px">
+                <div id="combat_mewtwo_stats"></div>
+            </div>
+            <div id="combat_enemy">
+                <div id="combat_enemy_stats"></div>
+                <img src="" alt="" id="combat_enemy_img" height="280px">
+            </div>
+        </div>
+    </div>
+
+    <audio src="./sounds/guess.mp3" id="guess"></audio>
+    <audio src="./sounds/oh_shiny.mp3" id="oh_shiny"></audio>
+    <audio src="./sounds/i_am_better.mp3" id="homelander"></audio>
+    <audio src="./sounds/homelander_attack.mp3" id="homelander_attack"></audio>
 </body>
 <script src="script.js"></script>
 </html>
