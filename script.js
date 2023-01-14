@@ -7,6 +7,8 @@ let enemy = ''
 let difficultyPercentage = 0
 let combatStarted = 0
 let pokedexMode = 'pokedex'
+let bossLevel = 1
+let bossfight = 0
 
 document.getElementById('evolutionTokens').innerHTML = evolutionToken
 
@@ -177,7 +179,7 @@ async function startEvolution(){
         difficultyPercentage = difficultyScaling(mewtwo.attack)
 
         document.getElementById('evolution_enemy_img').src = enemy.img
-        document.getElementById('evolution_enemy_stats').innerHTML = `name : ${enemy.name}<br>hp : ${enemy.hp*difficultyPercentage}<br>attack : ${enemy.attack*difficultyPercentage}<br>defense : ${enemy.defense*difficultyPercentage}<br>speed : ${enemy.speed*difficultyPercentage}`
+        document.getElementById('evolution_enemy_stats').innerHTML = `name : ${enemy.name}<br>hp : ${enemy.hp}<br>attack : ${enemy.attack}<br>defense : ${enemy.defense}<br>speed : ${enemy.speed}`
 
         let mewtwoGainedHp = 0
         let mewtwoGainedAttack = 0
@@ -193,7 +195,7 @@ async function startEvolution(){
             difficultyPercentage = difficultyScaling(mewtwo.attack)
 
             document.getElementById('evolution_enemy_img').src = enemy.img
-            document.getElementById('evolution_enemy_stats').innerHTML = `name : ${enemy.name}<br>hp : ${enemy.hp*difficultyPercentage}<br>attack : ${enemy.attack*difficultyPercentage}<br>defense : ${enemy.defense*difficultyPercentage}<br>speed : ${enemy.speed*difficultyPercentage}`
+            document.getElementById('evolution_enemy_stats').innerHTML = `name : ${enemy.name}<br>hp : ${enemy.hp}<br>attack : ${enemy.attack}<br>defense : ${enemy.defense}<br>speed : ${enemy.speed}`
 
             mewtwo.hp += Math.round(enemy.hp*percentageGained)
             mewtwo.attack += Math.round(enemy.attack*percentageGained)
@@ -208,7 +210,7 @@ async function startEvolution(){
             document.getElementById('evolution_mewtwo_img').src = mewtwo.img
             document.getElementById('evolution_mewtwo_stats').innerHTML = `name : ${mewtwo.name}<br>hp : ${mewtwo.hp}<br>attack : ${mewtwo.attack}<br>defense : ${mewtwo.defense}<br>speed : ${mewtwo.speed}`
 
-            console.log('Mewtwo evolved \n(+'+Math.round(enemy.hp*percentageGained)+' hp|+'+Math.round(enemy.attack*percentageGained)+' attack|+'+Math.round(enemy.defense*percentageGained)+' defense|+'+Math.round(enemy.speed*percentageGained)+' speed)')
+            console.log('Mewtwo evolved \n(+'+Math.round(enemy.hp*percentageGained)+' hp|+'+Math.round(enemy.attack)+' attack|+'+Math.round(enemy.defense)+' defense|+'+Math.round(enemy.speed)+' speed)')
 
             tokenNumber--
             document.getElementById('tokenNumber').value = tokenNumber
@@ -253,7 +255,7 @@ function escapeCombat(){
 }
 
 function switchToCombat(){
-    if(combatStarted == 0){
+    if(mewtwo != ''){
         combatStarted = 1
         enemy = G1pokemon[randomBetween(0,149)]
         difficultyPercentage = difficultyScaling(mewtwo.attack)
@@ -281,7 +283,7 @@ function switchToCombat(){
 }
 
 async function startCombat(){
-    if(combatStarted == 1){
+    if(combatStarted == 1 || bossfight == 1){
         combatStarted = 2
 
         console.log(enemy)
@@ -358,7 +360,18 @@ async function startCombat(){
                 await delay(1000)
             }
             escapeCombat()
-            evolutionToken++
+            if(bossfight == 1){
+                evolutionToken += 10
+                bossLevel++
+                if(bossLevel <= 6){
+                    document.getElementById('boss_'+bossLevel).style.backgroundColor = ''
+                }else if(bossLevel >= 6){
+                    alert("Well done you beat them all !");
+                }
+                bossfight = 0
+            }else{
+                evolutionToken++
+            }
             document.getElementById('evolutionTokens').innerHTML = evolutionToken
         }
     }
@@ -459,4 +472,70 @@ async function getRandom() {
     pouet.push(pokemon['name'])
     console.log(pouet)
     return pokemon
+}
+
+let boss_1 = new Pokemon('Entei',250,200,180,100,'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/244.png')
+let boss_2 = new Pokemon('Dialga',400,350,360,250,'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/483.png')
+let boss_3 = new Pokemon('Giratina',650,580,600,300,'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/487.png')
+let boss_4 = new Pokemon('Regigigas',900,1000,970,400,'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/486.png')
+let boss_5 = new Pokemon('Rayquaza',1200,1425,1305,1200,'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/384.png')
+let boss_6 = new Pokemon('Groudon',1800,1675,1980,300,'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/383.png')
+
+function boss(bossNum){
+    if(mewtwo != '' && bossNum == bossLevel){
+        switch(bossNum){
+            case 1:
+                enemy = boss_1;
+                let enteiSound = document.querySelector('#entei')
+                enteiSound.currentTime = 0
+                enteiSound.play()
+                break;
+            case 2:
+                enemy = boss_2;
+                let dialgaSound = document.querySelector('#dialga')
+                dialgaSound.currentTime = 0
+                dialgaSound.play()
+                break;
+            case 3:
+                enemy = boss_3;
+                let giratinaSound = document.querySelector('#giratina')
+                giratinaSound.currentTime = 0
+                giratinaSound.play()
+                break;
+            case 4:
+                enemy = boss_4;
+                let regigigasSound = document.querySelector('#regigigas')
+                regigigasSound.currentTime = 0
+                regigigasSound.play()
+                break;
+            case 5:
+                enemy = boss_5;
+                let rayquazaSound = document.querySelector('#rayquaza')
+                rayquazaSound.currentTime = 0
+                rayquazaSound.play()
+                break;
+            case 6:
+                enemy = boss_6;
+                let groudonSound = document.querySelector('#groudon')
+                groudonSound.currentTime = 0
+                groudonSound.play()
+                break;
+        }
+        bossfight = 1
+        modeSelected = 'combat'
+        clearZones('generate')
+        clearZones('evolution')
+        if(mewtwo.img != './imgs/homelander.png'){
+            if(mewtwo.img != 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/150.png'){
+                document.getElementById('combat_mewtwo_img').src = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/150.png'
+            }else{
+                document.getElementById('combat_mewtwo_img').src = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/150.png'
+            }
+        }else{
+            document.getElementById('combat_mewtwo_img').src = './imgs/homelander.png'
+        }
+        document.getElementById('combat_mewtwo_stats').innerHTML = `name : ${mewtwo.name}<br>hp : ${mewtwo.hp}<br>attack : ${mewtwo.attack}<br>defense : ${mewtwo.defense}<br>speed : ${mewtwo.speed}`
+        document.getElementById('combat_enemy_stats').innerHTML = `name : ${enemy.name}<br>hp : ${enemy.hp}<br>attack : ${enemy.attack}<br>defense : ${enemy.defense}<br>speed : ${enemy.speed}`
+        document.getElementById('combat_enemy_img').src = enemy.img
+    }
 }

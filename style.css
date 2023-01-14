@@ -109,7 +109,7 @@ body button{
     overflow: hidden;
 }
 #combat_mewtwo_img{
-    padding: 100px 0 0 100px;
+    padding: 100px 0 0 0;
 }
 #combat_enemy_img{
     padding: 0 200px 300px 0;
@@ -129,4 +129,13 @@ body button{
 .div{
     text-align: center;
     color: black;
+}
+#boss_buttons{
+    height: 30px;
+    display: flex;
+    background-color: rgb(220, 0, 68);
+    padding: 5px;
+}
+#boss_buttons button{
+    margin-right: 5px;
 }
