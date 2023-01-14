@@ -1,23 +1,132 @@
-#global, #combatZone, #evolutionZone{
-    margin: 0 0 0 5px;
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+#lab, #combatZone, #evolutionZone, #modeButtons, #modeButtons div, #combat_mewto, #combat_enemy{
     display: flex;
     flex-direction: row;
-}
-#evolution_mewto, #combat_mewto{
-    box-sizing: border-box;
-    border-right: 1px black solid;
-}
-[id$="_img"]{
-    box-sizing: border-box;
-    border: 5px darkred solid;
 }
 body{
     color: white;
     background-color: rgb(30, 30, 30);
+}
+body button{
+    background-color: rgb(92, 27, 27);
+    color: white;
+    border: none;
+    padding: 5px;
+    border-radius: 10px;
 }
 .overlay {
     /* -webkit-filter : brightness(0%);
     filter : brightness(0%); */
     background: rgba(0,0,0,0.1);
     pointer-events: none;
+}
+#lab, #duel{
+    height: 50vh;
+    display: flex;
+}
+#duel{
+    background-image: url('./imgs/field.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+#lab{
+    background-image: url('./imgs/templateFilledAllRed.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color: rgb(220, 0, 68);
+}
+#generateMewtwo{
+    width: 20vw;
+}
+#evolutionMod{
+    width: 47vw;
+}
+#pokedex{
+    width: 33vw;
+}
+#evolutionZone, #pokedex_outer_button, #generate_outer_button{
+    height: 45vh;
+}
+#generate_outer_button, #evolution_mewto, #evolution_enemy{
+    color: black;
+    text-align: center;
+    padding: 0 50px 0 0;
+}
+#generate_mewtwo_img, #evolution_mewtwo_img, #evolution_enemy_img{
+    padding: 40px 0 0 0;
+}
+#evolution_mewto, #evolution_enemy, #evolution_enemy, #combat_mewto, #combat_enemy{
+    width: 50%;
+}
+#modeButtons, #combat_mewto, #combat_enemy{
+    justify-content: space-between;
+}
+#combatZone{
+    width: 100vw;
+    overflow: hidden;
+}
+#combat_mewtwo_img{
+    padding: 100px 0 0 100px;
+}
+#combat_enemy_img{
+    padding: 0 200px 300px 0;
+}
+#combat_mewtwo_stats{
+    position: absolute;
+    bottom: 50px;
+    background-color: gray;
+    color: black;
+    left: 500px;
+}
+#combat_enemy_stats{
+    background-color: gray;
+    color: black;
+    height: fit-content;
+}
+.div{
+    text-align: center;
+    color: black;
 }
